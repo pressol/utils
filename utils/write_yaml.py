@@ -1,2 +1,3 @@
 
-def write(data)
+def write(data):
+    pass

@@ -1,5 +1,4 @@
 import sqlite3
-from rtcclient.files import file
 import datetime
 from shared_lib.utils.pythontools.code import warning
 
@@ -103,25 +102,6 @@ def add_obj_file_2_db(obj):
         dmstate=obj.get_dmstate(),
         dmtype=obj.get_dmtype(),
     )
-
-
-# assumes there is only one returned
-def return_file_obj(filename):
-    tmp = select_by_filename(filename)
-    print()
-    if tmp[0][6] == None:
-        tmp[0][5] = ""
-    return_obj = file(
-        tmp[0][1],
-        tmp[0][3],
-        "",
-        "",
-        tmp[0][6],
-        tmp[0][5]
-    )
-    return_obj.set_fileid(tmp[0][0])
-    return return_obj
-
 
 # this will be redundant when this can be retrieved from RTC
 def get_file_id(filename):
