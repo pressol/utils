@@ -1,6 +1,6 @@
 from os import walk
 
-from utils.hashfiles import hashfilesha512, hashfilesha256, hashfilemd5
+from utils.hash.hashfiles import hashfilesha512, hashfilesha256, hashfilemd5
 from utils.sql import *
 import datetime
 
