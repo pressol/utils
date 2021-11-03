@@ -20,7 +20,8 @@ def sign_data(data: str, key: jwk.JWK):
 
 
 def verify_data(sig: str, key: str):
+    key_jsk = jwk.JWK.from_json(key)
     jwstoken = jws.JWS()
     jwstoken.deserialize(sig)
-    jwstoken.verify(key)
+    jwstoken.verify(key_jsk)
     return jwstoken.payload, jwstoken.is_valid
