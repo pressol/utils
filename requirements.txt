@@ -1,6 +1,6 @@
-requests~=2.25.1
-urllib3~=1.22
-PyYAML~=5.4
-paho-mqtt~=1.5.1
-
-jwcrypto~=1.0
+requests>=2.25.1
+urllib3>=1.22
+PyYAML>=5.4
+paho-mqtt>=1.5.1
+jwcrypto>=1.0
+pyping2>=0.1.0
