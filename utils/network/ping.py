@@ -30,7 +30,7 @@ def ping_web_single_host_up(host: str):
 
 def ping_web_multi_host_up(hosts: list):
     r = pyping2.multiping(hosts)
-    if r.ret_code == 0:
+    if r == 0:
         return True
     else:
         return False

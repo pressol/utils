@@ -5,7 +5,7 @@ import json
 # https://docs.python.org/3/library/json.html
 def detect_type_return_json(data):
     data_type = type(data)
-    if data_type is dict or list or tuple:
+    if data_type == dict or data_type == list or data_type == tuple:
         return json.dumps(data)
-    elif data_type == str or int or float or bool:
+    elif data_type == str or data_type == int or data_type == float or data_type == bool:
         return data

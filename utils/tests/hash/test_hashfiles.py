@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 
-class Test(TestCase):
+class hashfilesha512(TestCase):
     def test_hashfilesha512(self):
         self.fail()
 
