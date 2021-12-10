@@ -35,6 +35,7 @@ class Ping_Web_Single(TestCase):
         host = "invalid.ope.uk.net"
         self.assertEqual(ping_web_single_host_up(host), False)
 
+
 class Ping_Web_Multi(TestCase):
     def test_ping_web_multi_host_up(self):
         host = ["1.1.1.1", "google.co.uk", "bing.com"]
