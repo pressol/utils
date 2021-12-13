@@ -1,6 +1,6 @@
 import os
 import platform
-
+from requests.exceptions import ConnectionError
 import pyping2
 
 
@@ -28,7 +28,9 @@ def ping_web_single_host_up(host: str):
             return True
         else:
             return False
-    except ConnectionError as e:
+    except ConnectionError:
+        return False
+    except TimeoutError:
         return False
 
 
