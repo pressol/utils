@@ -20,6 +20,14 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: "3.10"
+    - name: Install other Test depends
+      run:  |
+        # make file runnable, might not be necessary
+        chmod +x "${GITHUB_WORKSPACE}/.github/workflows/Install_tests.sh"
+        # run script
+        "${GITHUB_WORKSPACE}/.github/workflows/Install_tests.sh"
+      shell: bash
+      
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
