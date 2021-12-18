@@ -1,30 +1,45 @@
 import os
-import urllib.request
+
 from unittest import TestCase
+from pyunpack import Archive
 
 from utils.security.lookup import inlookuptable
 
 
-class InLookupTable(TestCase):
-    def setUp(self):
-        with urllib.request.urlopen(
-                "https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt") as response, open(
-            "/tmp/rockup.txt", 'wb') as out_file:
-            data = response.read()  # a `bytes` object
-            out_file.write(data)
+class Mega:
+    pass
 
-    def tearDown(self):
-        os.remove("/tmp/rockup.txt")
+
+class InLookupTable(TestCase):
 
     def test_inlookuptable_inlist_pass(self):
-        wordlist = "/home/network/PycharmProjects/onos_cli/onos_controller_rest_libary/onosrest/types/wordlist.txt"
+        wordlist = "/tmp/words.txt"
+        # gets a dictonary
+        os.system("mega-get 'https://mega.nz/file/tkdH2Iib#aIij6eFNdJA5rmgR8x5NwYxqBpdrHJAaPTfr4uUxKv8' '/tmp'")
+        os.path.exists(wordlist)
+        # test
         self.assertEqual(inlookuptable("zoom", wordlist), True)
+        # tear it down
+        os.remove(wordlist)
 
     def test_inlookuptable_inlist_pass_large(self):
-        wordlist = "/tmp/rockup.txt"
+        wordlist = "/tmp/rockyou.txt"
+        # gets rockyou password list
+        os.system("mega-get 'https://mega.nz/file/94MXGYSI#T84go5rgXLg8aG8BUMZoaipJRMaBwjeJWRfiOz7tDjs' '/tmp'")
+        os.path.exists(wordlist)
+        # test
         self.assertEqual(inlookuptable("tekken5", wordlist), True)
+        # tear it down
+        os.remove(wordlist)
 
     def test_inlookuptable_inlist_pass_huge(self):  # this will take a long time
-        wordlist = "/home/network/Downloads/weakpass_3w"
+        wordlist = "/tmp/weakpass_3w"
+        # getting really big list
+        os.system("mega-get 'https://mega.nz/file/F5ElXYTB#og8m6DWQ6jfbnQdvLKFoqTbwyGbmXReH8jfFxW2W5xE' '/tmp'")
+        os.system("7z x /tmp/weakpass_3w.7z -o/tmp/ -y")
+        os.path.exists(wordlist)
+        # test
         self.assertEqual(inlookuptable("silovoe22", wordlist), True)
-
+        # tear it down
+        os.remove("/tmp/weakpass_3w.7z")
+        os.remove(wordlist)
