@@ -14,7 +14,7 @@ class MacCheck(TestCase):
         mac = "26:C2:05:5B:66:81"
         self.assertEqual(checkMAC(mac), True)
 
-    def test_valid_dots_check_mac(self):  # should be valid but the regex doesn't allow it
+    def test_valid_dots_check_mac(self):
         mac = "961B.7095.92B6"
         self.assertEqual(checkMAC(mac), True)
 
