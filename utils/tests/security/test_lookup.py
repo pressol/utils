@@ -5,11 +5,6 @@ from pyunpack import Archive
 
 from utils.security.lookup import inlookuptable
 
-
-class Mega:
-    pass
-
-
 class InLookupTable(TestCase):
 
     def test_inlookuptable_inlist_pass(self):
