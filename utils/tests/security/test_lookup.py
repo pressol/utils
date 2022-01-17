@@ -38,3 +38,25 @@ class InLookupTable(TestCase):
         # tear it down
         os.remove("/tmp/weakpass_3w.7z")
         os.remove(wordlist)
+
+    def test_inlookuptable_inlist_fail(self):
+        wordlist = "/tmp/words.txt"
+        # gets a dictonary
+        os.system("mega-get 'https://mega.nz/file/tkdH2Iib#aIij6eFNdJA5rmgR8x5NwYxqBpdrHJAaPTfr4uUxKv8' '/tmp'")
+        os.path.exists(wordlist)
+        # test
+        self.assertEqual(inlookuptable("'", wordlist), False)
+        # tear it down
+        os.remove(wordlist)
+
+    def test_inlookuptable_inlist_fail_huge(self):  # this will take a long time
+        wordlist = "/tmp/weakpass_3w"
+        # getting really big list
+        os.system("mega-get 'https://mega.nz/file/F5ElXYTB#og8m6DWQ6jfbnQdvLKFoqTbwyGbmXReH8jfFxW2W5xE' '/tmp'")
+        os.system("7z x /tmp/weakpass_3w.7z -o/tmp/ -y")
+        os.path.exists(wordlist)
+        # test
+        self.assertEqual(inlookuptable("'", wordlist), False)
+        # tear it down
+        os.remove("/tmp/weakpass_3w.7z")
+        os.remove(wordlist)
