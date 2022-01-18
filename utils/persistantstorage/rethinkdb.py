@@ -1,26 +1,28 @@
-from rethinkdb import r
-
-'''
-connect to database
-'''
+from rethinkdb import RethinkDB
 
 
-def connect(hostname: str = "localhost", port: int = 28015):
-    return r.connect(hostname, port)
+class RethinkStore:
 
+    def __init__(self, hostname: str = "localhost", port: int = 28015):
+        self.r = RethinkDB()
+        self.hostname = hostname
+        self.port = port
+        self.conn = self.connect()
 
-'''
-create table
-'''
+    def connect(self, hostname: str = "localhost", port: int = 28015):
+        return self.r.connect(hostname, port)
 
+    def create_database(self, database: str):
+        self.r.db_create(database).run()
 
-def create_table(database: str, table_name: str, rethinkobj):
-    rethinkobj.db(database).table_create(table_name).run()
+    def create_table(self, database: str, table_name: str):
+        self.conn.db(database).table_create(table_name).run()
 
+    def insert_data_dict(self, data: dict, table_name: str):
+        self.conn.table(table_name).insert(data).run()
 
-def insert_data_dict(data: dict, table_name: str, rethinkobj):
-    rethinkobj.table(table_name).insert(data).run()
+    def insert_data_json(self, data: list[dict], table_name: str):
+        self.conn.table(table_name).insert(data).run()
 
-
-def insert_data_json(data: list[dict], table_name: str, rethinkobj):
-    rethinkobj.table(table_name).insert(data).run()
+    def server_info(self):
+        return self.conn.server()
