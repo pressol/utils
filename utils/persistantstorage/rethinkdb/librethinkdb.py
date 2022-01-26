@@ -1,4 +1,5 @@
 from rethinkdb import RethinkDB
+from typing import List
 
 
 class RethinkStore:
@@ -21,7 +22,7 @@ class RethinkStore:
     def insert_data_dict(self, data: dict, table_name: str):
         self.conn.table(table_name).insert(data).run()
 
-    def insert_data_json(self, data: list[dict], table_name: str):
+    def insert_data_json(self, data: List[dict], table_name: str):
         self.conn.table(table_name).insert(data).run()
 
     def server_info(self):

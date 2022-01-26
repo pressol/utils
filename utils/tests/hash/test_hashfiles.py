@@ -1,5 +1,4 @@
 import os
-import urllib.request
 from unittest import TestCase
 
 from utils.hash.hashfiles import hashfilemd5, hashfilesha256, hashfilesha512
