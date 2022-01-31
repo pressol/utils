@@ -23,7 +23,7 @@ def remove_data(db: pickledb.PickleDB, key: str):
     return db.rem(key)
 
 """
-if the libaries open_store is used there is no need to use save
+if the libraries open_store is used there is no need to use save
 Returns a bool if successful
 return: bool
 """

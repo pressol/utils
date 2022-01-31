@@ -41,7 +41,7 @@ class Libpickledb(TestCase):
         finally:
             # tear it down
             os.remove(file)
-    
+
     def test_bulk_get(self):
         file = '/tmp/AnimalAge.csv'
         objpickle = open_store(self.database)
@@ -56,7 +56,7 @@ class Libpickledb(TestCase):
                         odata = get_data(objpickle, key=row[0])
                         if odata == row[1]:
                             data_compare.append(True)
-                        else: 
+                        else:
                             data_compare.append(False)
             else:
                 self.fail("File failed to download")
