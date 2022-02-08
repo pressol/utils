@@ -13,7 +13,7 @@ class Rethinking(TestCase):
         server_info = objrethinkdb.server_info()
         name = server_info["name"]
         name = name.split("_")
-        self.assertIs(name[0].__len__() == 12, name[1].__len__() == 3, "Server name matches the length requiremnt")
+        self.assertIs(name[0].__len__() == 12, name[1].__len__() == 3, "Server name matches the length requirement")
 
     def test_create_db(self):
         objrethinkdb = RethinkStore()
