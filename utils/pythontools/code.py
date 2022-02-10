@@ -4,6 +4,7 @@ import inspect
 
 string_types = (type(b''), type(u''))
 
+
 # stackoverflow.com/questions/2536307
 def deprecated(func):
     @functools.wraps(func)
@@ -14,7 +15,9 @@ def deprecated(func):
                       stacklevel=2)
         warnings.simplefilter('default', DeprecationWarning)
         return func(*args, **kwargs)
+
     return new_func()
+
 
 def deprecated2(reason="please use other function"):
     if isinstance(reason, string_types):
@@ -26,14 +29,15 @@ def deprecated2(reason="please use other function"):
 
             @functools.wraps(func1)
             def new_func1(*args, **kwargs):
-                warnings.simplefilter ('always', DeprecationWarning)
-                warnings.warn (
-                    fmt1.format (name=func1.__name__, reason=reason),
+                warnings.simplefilter('always', DeprecationWarning)
+                warnings.warn(
+                    fmt1.format(name=func1.__name__, reason=reason),
                     category=DeprecationWarning,
                     stacklevel=2
                 )
-                warnings.simplefilter ('default', DeprecationWarning)
+                warnings.simplefilter('default', DeprecationWarning)
                 return func1(*args, **kwargs)
+
         return decorator
     elif inspect.isclass(reason) or inspect.isfunction(reason):
         func2 = reason
@@ -44,14 +48,15 @@ def deprecated2(reason="please use other function"):
 
         @functools.wraps(func2)
         def new_func2(*args, **kwargs):
-            warnings.simplefilter ('always', DeprecationWarning)
-            warnings.warn (
-                fmt2.format (name=func2.__name__),
+            warnings.simplefilter('always', DeprecationWarning)
+            warnings.warn(
+                fmt2.format(name=func2.__name__),
                 category=DeprecationWarning,
                 stacklevel=2
             )
-            warnings.simplefilter ('default', DeprecationWarning)
+            warnings.simplefilter('default', DeprecationWarning)
             return func2
+
         return new_func2
     else:
         raise TypeError(repr(type(reason)))
@@ -67,14 +72,15 @@ def warning(reason="this function will use up all your RAM is not uses sensitivl
 
             @functools.wraps(func1)
             def new_func1(*args, **kwargs):
-                warnings.simplefilter ('always', UserWarning)
-                warnings.warn (
-                    fmt1.format (name=func1.__name__, reason=reason),
+                warnings.simplefilter('always', UserWarning)
+                warnings.warn(
+                    fmt1.format(name=func1.__name__, reason=reason),
                     category=UserWarning,
                     stacklevel=2
                 )
-                warnings.simplefilter ('default', UserWarning)
+                warnings.simplefilter('default', UserWarning)
                 return func1(*args, **kwargs)
+
         return decorator
     elif inspect.isclass(reason) or inspect.isfunction(reason):
         func2 = reason
@@ -85,17 +91,15 @@ def warning(reason="this function will use up all your RAM is not uses sensitivl
 
         @functools.wraps(func2)
         def new_func2(*args, **kwargs):
-            warnings.simplefilter ('always', UserWarning)
-            warnings.warn (
-                fmt2.format (name=func2.__name__),
+            warnings.simplefilter('always', UserWarning)
+            warnings.warn(
+                fmt2.format(name=func2.__name__),
                 category=UserWarning,
                 stacklevel=2
             )
-            warnings.simplefilter ('default', UserWarning)
+            warnings.simplefilter('default', UserWarning)
             return func2
+
         return new_func2
     else:
         raise TypeError(repr(type(reason)))
-
-
-

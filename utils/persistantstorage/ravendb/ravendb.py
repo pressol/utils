@@ -1,5 +1,6 @@
 import socket
 
+import deprecated
 from pyravendb.store import document_store
 
 
@@ -46,3 +47,25 @@ class ravendb:
         with self.db.open_session() as doc:
             doc.store(obj_document)
             doc.save_changes()
+
+    def query_object_type(self, document_obj: object):
+        with self.db.open_session() as session:
+            return list(session.query(object_type=document_obj))
+
+    def query_key_value(self, key: str, value):
+        with self.db.open_session() as session:
+            return list(
+                session.query().where_equals(
+                    key,
+                    value
+                )
+            )
+
+    def query_object_type_key_value(self, document_obj: object, key: str, value):
+        with self.db.open_session() as session:
+            return list(
+                session.query(object_type=document_obj).where_equals(
+                    field_name=key,
+                    value=value
+                )
+            )

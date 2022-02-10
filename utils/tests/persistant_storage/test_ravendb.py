@@ -54,3 +54,25 @@ class Testravendb(TestCase):
             obj_document=test
         )
 
+    def test_query_object_type(self):
+        t = self.conn.query_object_type(
+            document_obj=self.Test
+        )
+        self.assertEqual(type(t), list)
+
+    """
+    def test_query_key_value(self):
+        t = self.conn.query_key_value(
+            key="name",
+            value="testing"
+        )
+        print()
+    """
+
+    def test_query_object_type_key_value(self):
+        t = self.conn.query_object_type_key_value(
+            document_obj=self.Test,
+            key="name",
+            value="testing"
+        )
+        self.assertEqual(type(t), list)
