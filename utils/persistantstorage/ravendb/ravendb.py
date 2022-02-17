@@ -1,6 +1,5 @@
 import socket
 
-import deprecated
 from pyravendb.store import document_store
 
 
