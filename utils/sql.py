@@ -1,6 +1,6 @@
 import sqlite3
 import datetime
-from shared_lib.utils.pythontools.code import warning
+from utils.pythontools.code import warning
 
 DEFAULT_PATH = ("state.sqlite3")
 

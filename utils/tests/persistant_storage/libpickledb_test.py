@@ -25,13 +25,12 @@ class Libpickledb(TestCase):
         remove_data(objpickle, key="test")
 
     def test_bulk_insert(self):
-        file = '/tmp/AnimalAge.csv'
+        file = '/test/repo/AnimalAge.csv'
         objpickle = open_store(self.database)
         try:
             # gets AnimalAge.csv
-            os.system("mega-get 'https://mega.nz/file/808mCbDJ#66I9HXeV8HcLIajf8vrWPMlJt3kfJl4nCnci6UvuAko' '/tmp'")
             if os.path.exists(file):
-                with open('/tmp/AnimalAge.csv') as csvfile:
+                with open(file) as csvfile:
                     reader = csv.reader(csvfile, delimiter=",")
                     for row in reader:
                         print(row)
@@ -39,18 +38,16 @@ class Libpickledb(TestCase):
             else:
                 self.fail("File failed to download")
         finally:
-            # tear it down
-            os.remove(file)
+            self.fail()
 
     def test_bulk_get(self):
-        file = '/tmp/AnimalAge.csv'
+        file = '/test/repo/AnimalAge.csv'
         objpickle = open_store(self.database)
         data_compare = []
         try:
             # gets AnimalAge.csv
-            os.system("mega-get 'https://mega.nz/file/808mCbDJ#66I9HXeV8HcLIajf8vrWPMlJt3kfJl4nCnci6UvuAko' '/tmp'")
             if os.path.exists(file):
-                with open('/tmp/AnimalAge.csv') as csvfile:
+                with open(file) as csvfile:
                     reader = csv.reader(csvfile, delimiter=",")
                     for row in reader:
                         odata = get_data(objpickle, key=row[0])
@@ -60,7 +57,6 @@ class Libpickledb(TestCase):
                             data_compare.append(False)
             else:
                 self.fail("File failed to download")
+
             self.assertEqual(all(data_compare), True)
-        finally:
-            # tear it down
-            os.remove(file)
+

@@ -26,14 +26,13 @@ class Rethinking(TestCase):
             objrethinkdb.create_table(table_name="test", database="test")
 
     def test_import_data_from_csv(self):
-        file = '/tmp/AnimalAge.csv'
+        file = '/test/repo/AnimalAge.csv'
         objrethinkdb = RethinkStore()
         try:
             # gets AnimalAge.csv
-            os.system("mega-get 'https://mega.nz/file/808mCbDJ#66I9HXeV8HcLIajf8vrWPMlJt3kfJl4nCnci6UvuAko' '/tmp'")
             if os.path.exists(file):
                 if objrethinkdb.server_info()["name"] == self.server_name:
-                    with open('/tmp/AnimalAge.csv') as csvfile:
+                    with open(file) as csvfile:
                         reader = csv.reader(csvfile, delimiter=",")
                         for row in reader:
                             print(row)
@@ -43,4 +42,4 @@ class Rethinking(TestCase):
                 self.fail("File failed to download")
         finally:
             # tear it down
-            os.remove(file)
+            self.fail()

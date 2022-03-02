@@ -4,7 +4,6 @@ sudo add-apt-repository universe
 sudo apt update
 sudo apt install -y p7zip-full p7zip-rar
 # install megacmd if required
-mega=$(dpkg -l | grep megacmd)
 if command -v dpkg -l | grep megacmd &> /dev/null
 then
     # get install package
