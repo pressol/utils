@@ -9,3 +9,12 @@ def detect_type_return_json(data):
         return json.dumps(data)
     elif data_type == str or data_type == int or data_type == float or data_type == bool:
         return data
+
+
+def dumpable(data) -> bool:
+    data_type = type(data)
+    if data_type == dict or data_type == list or data_type == tuple or \
+            data_type == str or data_type == int or data_type == float or data_type == bool:
+        return True
+    else:
+        return False
